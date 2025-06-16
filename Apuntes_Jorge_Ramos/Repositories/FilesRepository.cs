@@ -29,6 +29,23 @@ namespace Apuntes_Jorge_Ramos.Repositories
         }
         public async Task<string> ObtenerInformacionArchivo()
         {
+            try
+            {
+                if (File.Exists(filePath))
+                {
+                    string infoArchivo = await File.ReadAllTextAsync(filePath);
+                    return infoArchivo;
+                }
+                else
+                {
+                    return "El archivo no existe.";
+
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
 
         }
     }
