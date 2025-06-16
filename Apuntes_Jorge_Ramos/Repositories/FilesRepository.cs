@@ -1,0 +1,35 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Apuntes_Jorge_Ramos.Repositories
+{
+    internal class FilesRepository
+    {
+        private string filePath = FileSystem.Current.AppDataDirectory+"/archivo1.txt";
+        public async Task<bool> CrearArchivo(String texto)
+        {
+            File.WriteAllText(filePath, texto);
+
+            try
+            {
+                await File.WriteAllTextAsync(filePath, texto);
+                if (File.Exists(filePath))
+                {
+                    return true;
+                }
+                return true;
+            }
+            catch (Exception)
+            { 
+                return false;
+            }
+        }
+        public async Task<string> ObtenerInformacionArchivo()
+        {
+
+        }
+    }
+}
